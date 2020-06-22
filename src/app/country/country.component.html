@@ -1,44 +1,43 @@
 <div class="country-deatils-wrapper">
-    <a redirectTo='/countries' style=" text-decoration: 'none'; color: 'hsl(200, 15%, 8%)' "><button class="btn white-btn back-btn">
+    <a routerLink='/countries' style=" text-decoration: 'none'; color: 'hsl(200, 15%, 8%)' "><button class="btn white-btn back-btn">
         <i class="fa fa-long-arrow-left fa-sm"> </i>
 Back</button></a>
         <div class="country-details-outer">
             <div class="country-details-container">
                 <div class="country-details-flag">
-                    <img src='{country.flag}' alt="country flag" />
+                    <img src={{country.flag}} alt="country flag" />
                 </div>
-                <div class="country-details-outer-block">
+                <div *ngIf='country' class="country-details-outer-block">
                     <div class="country-name-title">
                         <h3><b>{{country.name}}</b></h3>
                     </div>
                     <div class="country-summary-div">
                         <div class="summary-left-inner-div">
-                            <div><b>Native Name:</b>{{country.nativeName}}</div>
-                            <div><b>Population:</b>{{country.population}}</div>
-                            <div><b>Region:</b>{{country.region}}</div>
-                            <div><b>Sub Region:</b>{{country.subregion || 'none'}}</div>
-                            <div><b>Capital:</b>{{country.capital || 'none'}} </div>
+                            <div><b>Native Name:</b><span> {{country.nativeName}}</span></div>
+                            <div><b>Population:</b><span> {{country.population}}</span></div>
+                            <div><b>Region:</b><span> {{country.region}}</span></div>
+                            <div><b>Sub Region:</b><span> {{country.subregion || 'none'}}</span></div>
+                            <div><b>Capital:</b><span> {{country.capital || 'none'}} </span> </div>
                         </div>
                         <div class="summary-right-inner-div">
-                            <!-- <div><b>Top Level Domain:</b><span>{{country.topLevelDomain.join()}}</span>
-                            </div> -->
-                            <!--<div><b>Currencies:</b> {this.state.currencies.map((currency, index) => (
-                                <span id={index}>{index + 1 === this.state.currencies.length ? currency.name : currency.name + ', '}</span>))}</div>
-                            <div><b>Languages:</b> {
-                                this.state.languages.map((lang, index) => (
-                                    <span>{index + 1 === this.state.languages.length ? lang.name : lang.name + ', '}</span>))}
+                             <div><b>Top Level Domain:</b><span> {{country.topLevelDomain.join()}}</span>
                             </div>
-                        </div> -->
+                            <div><b>Currencies:</b><span *ngFor="let currency of country.currencies; i as index"> {{currency.name}}</span></div>
+                             <div><b>Languages:</b><span *ngFor="let lang of country.languages;"> {{lang.name}} </span></div>
+                        </div>
                     </div>
-                    <!-- <div className={this.state.borderCountries.length ? 'border-country-wrapper' : 'd-none'}>
-                        <div className="d-flex border-area"><b>Border Countries:</b></div>
-                        <div className="d-flex border-country-buttons">{this.state.borderCountries.map((borderCountry, index) => (
-                            <Link to={`/countries/${borderCountry.alpha3Code}`} style={{ textDecoration: 'none', color: (this.props.darkMode ? 'hsl(0, 0%, 100%)' : 'hsl(200, 15%, 8%)') }}
-                                className={this.props.darkMode ? "btn white-b   tn border-btn dark-mode-element dark-shadow" : "btn white-btn border-btn"}>
-                                <div>{borderCountry.name}</div></Link>
-                        ))}</div>-->
+                    <div [ngClass]="(country.borders.length)?'d-flex':'d-none'">
+                        <div class="d-flex border-area">
+                            <b>Border Countries:</b></div>
+                    <div class="d-flex border-country-wrapper" >
+                        <div class="d-flex border-country-buttons" *ngFor="let border of borderCountries[0]">
+                        <a routerLink='/countries/{{border.alpha3Code}}' style="text-decoration: 'none'; color: 'hsl(200, 15%, 8%)'" class="btn white-btn border-btn">
+                            <div>{{border.name}}</div> 
+                        </a>  
+                        </div>
                     </div>
+                     </div>
                 </div>
             </div>
         </div>
-</div>
+<router-outlet></router-outlet>

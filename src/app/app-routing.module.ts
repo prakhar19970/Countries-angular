@@ -5,10 +5,10 @@ import { CountryComponent } from './country/country.component';
 
 
 const routes: Routes = [
-  { path: 'countries' ,component:CountriesComponent },
-  { path: 'countries/:code',component: CountryComponent },
-  { path: '' , redirectTo:'/countries', pathMatch:'full' }
-];
+  { path: '' , redirectTo:'/countries', pathMatch:'full' },
+  { path: 'countries' ,children:[{ path: '' , component:CountriesComponent },
+  { path: ':code',component: CountryComponent }]
+}];
 
 @NgModule({
  imports: [RouterModule.forRoot(routes)],
