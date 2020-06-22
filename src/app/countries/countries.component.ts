@@ -22,10 +22,19 @@ export class CountriesComponent implements OnInit {
          this.countries=this.allCountries.filter(country=>{
             return country.name.toLowerCase().includes(countryName.toLowerCase());
         })
-        // this=this.filteredResult;
   }
   else{
    this.countries=this.allCountries;
+  }
+}
+
+  filterRegion(region){
+    if(region.length){
+      this.countries=this.allCountries.filter(country=>{
+        return country.region.toLowerCase() === region.toLowerCase()}) 
+    }
+    else{
+  this.countries=this.allCountries;
   }
 }
 
@@ -34,21 +43,7 @@ export class CountriesComponent implements OnInit {
     this.allCountries=data,
     this.countries=data,
     error=> this.errorMsg = error
-    });
-
-     
+    });   
  }
 
 }
-
-
-
-  
-//  @Input() public parentData;
- 
-
-  // onClick(event){
-  //   console.log(event);
-  //   console.log('welcome to code evolution ');
-  //   this.name="prakhar is here";
-  // }

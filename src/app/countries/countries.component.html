@@ -6,7 +6,7 @@
   <input type="text" name="search" #search class="countries-search-bar" placeholder='Search for a country...' [ngModel]="searchValue" (ngModelChange)="searchCountry($event)"/>
   </div>        
   <div class="dropdown">
-    <select class="btn white-btn">
+    <select class="btn white-btn" [ngModel]="searchValue" (ngModelChange)="filterRegion($event)">
     <option class="btn white-btn" value=''>Region</option>
             <option value='africa'>Africa</option>
             <option value='americas'>Americas</option>
@@ -19,7 +19,7 @@
   </div>
      <div class="country-blocks-wrapper">
         <div  *ngFor="let country of countries" class="country-block">
-        <a style="text-decoration: 'none'; color:'hsl(200, 15%, 8%)'" >
+        <a routerLink="/countries/{{country.alpha3Code}}" style="text-decoration: 'none'; color:'hsl(200, 15%, 8%)'" >
                 <div class="country-flag-div"><img class="curved-corners" src={{country.flag}} alt="country flag"/></div>
                 <div class="country-details-div">
                 <div class="country-name-title">
