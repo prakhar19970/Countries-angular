@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "countries-angular"
+    }
+  },
+  "defaultProject": "countries-angular",
+  "cli": {
+    "analytics": false
+  }
 }

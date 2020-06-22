@@ -1,0 +1,19 @@
+.countries-header{
+    background-color: hsl(0, 0%, 100%);
+    display: flex;
+    box-shadow: 0px 3px 5px hsl(0, 0%, 94%);
+    height:4rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 6%;
+  }
+
+.header-title{
+    font-size:22px;
+    font-weight: 800;
+  }
+  
+.white-btn{
+    background-color:hsl(0, 0%, 100%);
+    font-weight: 600;
+  }
