@@ -1,4 +1,17 @@
 
+
+  .dark-mode-element{
+    background-color: hsl(209, 23%, 22%) !important;
+    color: white;
+  }
+  .dark-shadow{
+    box-shadow: 2px 2px 3px 2px hsl(200, 23%, 10%) !important; 
+  }
+  .dark-background{
+    background-color: hsl(207, 26%, 17%) !important;
+  color:hsl(0, 0%, 100%);
+  }
+  
 .curved-corners{
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;

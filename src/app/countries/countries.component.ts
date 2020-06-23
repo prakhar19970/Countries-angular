@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from '../countries.service';
+import { DarkmodeService } from '../darkmode.service';
 
 @Component({
   selector: 'app-countries',
@@ -8,11 +9,12 @@ import { CountriesService } from '../countries.service';
 })
 export class CountriesComponent implements OnInit {
 
-  constructor(private _countriesService:CountriesService) { }
+  constructor(private _countriesService:CountriesService,
+    private _mode:DarkmodeService) { }
  
 
   public countries=[];
-  public filteredResult=[];
+  public darkMode;
   public allCountries=[];
   public errorMsg;
   public searchValue='';
@@ -43,7 +45,9 @@ export class CountriesComponent implements OnInit {
     this.allCountries=data,
     this.countries=data,
     error=> this.errorMsg = error
-    });   
+    });  
+    
+    this.darkMode=this._mode.getModeStatus();
  }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DarkmodeService } from '../darkmode.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _mode:DarkmodeService) { }
+
+public darkMode;
+ activateDarkMode(){
+  if(sessionStorage.getItem('mode')==='dark'){
+    this.darkMode=false;
+    sessionStorage.setItem('mode','light');
+  }
+  else{
+    this.darkMode=true;
+   sessionStorage.setItem('mode','dark');
+  }
+}
 
   ngOnInit(): void {
+      this.darkMode=this._mode.getModeStatus();
   }
 
 }
