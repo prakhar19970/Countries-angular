@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute ,Router} from '@angular/router';
+import { ActivatedRoute ,Router,ParamMap} from '@angular/router';
 import { CountryService } from '../country.service';
 import { CountryInterface } from '../countries';
+import { DarkmodeService } from '../darkmode.service';
+// import { ActivatedRoute,ParamMap } from '@angular/router';
  
 @Component({
   selector: 'app-country',
@@ -14,9 +16,11 @@ export class CountryComponent implements OnInit {
   public countryCode='';
   public borderCountries=[];
   public country:CountryInterface;
+  public darkMode;
  
   constructor(private route: ActivatedRoute,
     private router: Router,
+    private _mode:DarkmodeService,
     private _countryService:CountryService){  }
 
 private _url:string= 'https://restcountries.eu/rest/v2/alpha/'
@@ -30,8 +34,12 @@ private _url:string= 'https://restcountries.eu/rest/v2/alpha/'
       this._countryService.getCountry(this._url+routeParams.code).subscribe(data =>{
           this.country=data;
           this.getborderCountries(this.country.borders)
-          });   
+          });
         });
+
+        this.route.paramMap.subscribe((params: ParamMap) => {
+          this.darkMode=this._mode.getModeStatus();
+        })
   }
 }
 

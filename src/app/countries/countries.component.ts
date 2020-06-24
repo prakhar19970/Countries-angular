@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from '../countries.service';
 import { DarkmodeService } from '../darkmode.service';
-
+import { ActivatedRoute,ParamMap } from '@angular/router';
 @Component({
   selector: 'app-countries',
   templateUrl: './countries.component.html',
@@ -10,7 +10,8 @@ import { DarkmodeService } from '../darkmode.service';
 export class CountriesComponent implements OnInit {
 
   constructor(private _countriesService:CountriesService,
-    private _mode:DarkmodeService) { }
+    private _mode:DarkmodeService,
+    private route: ActivatedRoute) { }
  
 
   public countries=[];
@@ -41,13 +42,16 @@ export class CountriesComponent implements OnInit {
 }
 
   ngOnInit(): void {
+
     this._countriesService.getCountries().subscribe(data =>{ 
     this.allCountries=data,
     this.countries=data,
     error=> this.errorMsg = error
-    });  
-    
-    this.darkMode=this._mode.getModeStatus();
+    });
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.darkMode=this._mode.getModeStatus();
+    })
  }
 
 }
